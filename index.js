@@ -28,6 +28,35 @@ app.get('/',async(req,res)=>{
    }
 })
 
+app.delete('/remove/:id',async(req,res)=>{
+    console.log(req.params)
+try {
+    var data = await stuModel.findByIdAndDelete(req.params.id,req.body);
+    res.send("Dleted succcesfully")
+} catch (error) {
+    res.send(error)
+}
+ })
+ 
+ app.put('/edit/:id',async(req,res)=>{
+    try {
+       var data= await stuModel.findByIdAndUpdate(req.params.id,req.body);
+       res.send("updated succesfully");
+
+    } catch (error) {
+        res.send(error.message)
+    }
+ })
+
+
+
+
+
+
+
+
+
+
 
 app.listen(port,(req,res)=>{
     console.log(`server is listening in the port ${port}`);
